@@ -1,171 +1,358 @@
-```markdown
-# Интернет-магазин (Frontend + Backend)
+# Getting Started with Create React App
 
-Учебный проект, выполненный в рамках курса «Фронтенд и бэкенд разработка» (4 семестр). Реализовано полноценное веб-приложение интернет-магазина с React‑фронтендом, Express‑бэкендом, стилизацией на SASS и автоматической документацией API через Swagger.
+This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+
+## Available Scripts
+
+In the project directory, you can run:
+
+### `npm start`
+
+Runs the app in the development mode.\
+Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+
+The page will reload when you make changes.\
+You may also see any lint errors in the console.
+
+### `npm test`
+
+Launches the test runner in the interactive watch mode.\
+See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+
+### `npm run build`
+
+Builds the app for production to the `build` folder.\
+It correctly bundles React in production mode and optimizes the build for the best performance.
+
+The build is minified and the filenames include the hashes.\
+Your app is ready to be deployed!
+
+See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+
+### `npm run eject`
+
+**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+
+If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+
+Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+
+You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+
+## Learn More
+
+You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+
+To learn React, check out the [React documentation](https://reactjs.org/).
+
+### Code Splitting
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/code-splitting](https://facebook.github.io/create-react-app/docs/code-splitting)
+
+### Analyzing the Bundle Size
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size](https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size)
+
+### Making a Progressive Web App
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app](https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app)
+
+### Advanced Configuration
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/advanced-configuration](https://facebook.github.io/create-react-app/docs/advanced-configuration)
+
+### Deployment
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/deployment](https://facebook.github.io/create-react-app/docs/deployment)
+
+### `npm run build` fails to minify
+
+This section has moved here: [https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify](https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify)
+
+
+
+
+# Отчет по КР1  
+## Выполненные работы
+
+В ходе выполнения практических занятий №1–5 были реализованы:
+
+- **Практическое занятие №1** – использование CSS-препроцессора SASS для стилизации интернет-магазина.
+- **Практическое занятие №2** – разработка серверной части на Node.js + Express с CRUD операциями для товаров.
+- **Практическое занятие №4** – интеграция фронтенда (React/HTML) с бэкендом, взаимодействие через API.
+- **Практическое занятие №5** – подключение Swagger для документирования REST API.
+
+## Используемые технологии
+
+- **Frontend**: HTML5, CSS3, SASS (SCSS), React (частично), Fetch API.
+- **Backend**: Node.js, Express.js, express-validator, CORS, Swagger (swagger-jsdoc, swagger-ui-express).
+- **Инструменты**: npm, Git.
+
+## Реализация
+### 1. CSS-препроцессор SASS (Практическое занятие №1)
+
+В файле [`styles.scss`](./styles.scss) применены основные возможности SASS:
+
+- **Переменные** – для хранения цветовой схемы, отступов, радиусов:
+  ```scss
+  $primary-color: #7d5a5a;
+  $bg1-color: #fff3f3;
+  $border-color: #efb1c3;
+  $space-md: 1rem;
+  $border-radius: 16px;
+  ```
+
+- **Миксины** – для переиспользования стилей (например, тени карточек):
+  ```scss
+  @mixin card-shadow($color, $blur: 20px) {
+    box-shadow: 0 4px $blur rgba($color, 0.08);
+    transition: box-shadow 0.3s ease, transform 0.3s ease;
+    &:hover {
+      box-shadow: 0 8px $blur * 1.5 rgba($color, 0.12);
+      transform: translateY(-2px);
+    }
+  }
+  ```
+
+- **Вложенность** – иерархическая структура селекторов, повторяющая HTML:
+  ```scss
+  .site-header {
+    background: linear-gradient(...);
+    &::after { ... }
+  }
+  .title {
+    .title-text { ... }
+    .title-des { ... }
+  }
+  ```
+
+Эти возможности позволили упростить поддержку стилей и сделать код более читаемым.
 
 ---
 
-## 📚 Содержание
+### 2. Сервер на Node.js + Express (Практическое занятие №2)
 
-- [Технологии](#технологии)
-- [Функциональность](#функциональность)
-- [Структура проекта](#структура-проекта)
-- [Запуск проекта](#запуск-проекта)
-- [API Endpoints](#api-endpoints)
-- [Документация API (Swagger)](#документация-api-swagger)
-- [Скриншоты](#скриншоты)
-- [Практические задания](#практические-задания)
+Сервер реализован в файле [`app.js`](./app.js). Основные моменты:
+
+- **Подключение необходимых модулей**:
+  ```js
+  const express = require('express');
+  const { body, validationResult } = require('express-validator');
+  const cors = require('cors');
+  ```
+
+- **Middleware**:
+  - `express.json()` – парсинг JSON тела запроса.
+  - `cors` – разрешение запросов с фронтенда (`http://localhost:3001`).
+  - Статические файлы из папки `public`.
+
+- **CRUD для товаров** (массив `products` загружается из `products.json` и сохраняется обратно):
+  - **GET /products** – получение всех товаров.
+  - **GET /products/:id** – получение товара по id.
+  - **POST /products** – создание нового товара с валидацией полей (name, price, category, amount, description).
+  - **PATCH /products/:id** – частичное обновление товара.
+  - **DELETE /products/:id** – удаление товара.
+
+  Пример маршрута создания товара:
+  ```js
+  app.post('/products',
+    body('name').isString().notEmpty(),
+    body('price').isFloat({ gt: 0 }),
+    // ...
+    async (req, res) => {
+      const errors = validationResult(req);
+      if (!errors.isEmpty()) {
+        return res.status(400).json({ errors: errors.array() });
+      }
+      // создание и сохранение товара
+    }
+  );
+  ```
+
+- **Валидация** выполнена с помощью `express-validator`, что обеспечивает корректность входных данных.
+
+- **Хранение данных** – в JSON-файлах (`products.json`, `users.json`), чтение и запись асинхронны.
 
 ---
 
-## 🛠 Технологии
+### 3. Интеграция фронтенда и бэкенда (Практическое занятие №4)
 
-| Слой        | Технологии |
-|-------------|------------|
-| **Frontend**| React, Axios, SASS (SCSS) |
-| **Backend** | Node.js, Express, nanoid, cors |
-| **Документация** | Swagger (swagger-jsdoc, swagger-ui-express) |
-| **Стилизация** | SASS (переменные, миксины, вложенность) |
-| **Тестирование** | Postman |
+#### Клиентская часть на чистом HTML/JavaScript
 
----
+В файле [`public/index.html`](./public/index.html) реализован интерфейс для управления товарами:
 
-## ✨ Функциональность
+- **Загрузка товаров** при загрузке страницы через `fetch`:
+  ```js
+  async function loadProducts() {
+    const response = await fetch('/products');
+    const products = await response.json();
+    renderProducts(products);
+  }
+  ```
 
-- **Полный CRUD** для товаров:
-  - Просмотр всех товаров (сетка карточек)
-  - Просмотр товара по ID
-  - Добавление нового товара
-  - Редактирование существующего
-  - Удаление товара
-- **Валидация** данных на клиенте и сервере
-- **Адаптивный дизайн** (пастельная фиолетовая тема)
-- **Интерактивная документация** API через Swagger UI
+- **Отображение товаров** в виде карточек с кнопками «Редактировать» и «Удалить».
 
----
+- **Добавление товара** через форму – отправка POST-запроса с JSON.
 
-## 📁 Структура проекта
+- **Редактирование** – через PATCH-запрос с обновлёнными полями.
 
+- **Удаление** – DELETE-запрос с подтверждением.
+
+Пример обработчика удаления:
+```js
+const response = await fetch(`${API_URL}/${id}`, { method: 'DELETE' });
+if (!response.ok) throw new Error('Ошибка при удалении');
+loadProducts(); // обновить список
 ```
-project/
-├── backend/                # Express сервер
-│   ├── app.js              # Основной файл сервера, маршруты, Swagger
-│   └── package.json
-├── frontend/               # React приложение
-│   ├── public/
-│   ├── src/
-│   │   ├── api/
-│   │   │   └── index.js    # Axios клиент для связи с API
-│   │   ├── components/
-│   │   │   ├── ProductItem.jsx
-│   │   │   ├── ProductList.jsx
-│   │   │   └── ProductModal.jsx
-│   │   ├── pages/
-│   │   │   └── ProductsPage/
-│   │   │       ├── ProductsPage.jsx
-│   │   │       ├── ProductsPage.scss   # SASS стили
-│   │   │       └── ProductsPage.css    # Скомпилированный CSS
-│   │   ├── App.js
-│   │   └── index.js
-│   └── package.json
-└── README.md
+
+#### React-версия
+
+Клиентская часть на React находится в папке src. Основной компонент – ProductsPage.jsx. Он использует хуки для управления состоянием и загрузки данных.
+Загрузка товаров при монтировании
+```jsx
+useEffect(() => {
+  loadProducts();
+}, []);
+
+const loadProducts = async () => {
+  setLoading(true);
+  const data = await api.getProducts();
+  setProducts(data);
+  setLoading(false);
+};
 ```
+
+Управление модальным окном (создание/редактирование)
+```jsx
+const [modalOpen, setModalOpen] = useState(false);
+const [modalMode, setModalMode] = useState('create');
+const [editingProduct, setEditingProduct] = useState(null);
+
+const openCreate = () => {
+  setModalMode('create');
+  setEditingProduct(null);
+  setModalOpen(true);
+};
+
+const openEdit = (product) => {
+  setModalMode('edit');
+  setEditingProduct(product);
+  setModalOpen(true);
+};
+```
+
+Обработка удаления
+```jsx
+const handleDelete = async (id) => {
+  if (!window.confirm('Удалить товар?')) return;
+  await api.deleteProduct(id);
+  setProducts(prev => prev.filter(p => p.id !== id));
+};
+```
+
+Отправка данных в API
+```jsx
+const handleSubmitModal = async (payload) => {
+  if (modalMode === 'create') {
+    const newProduct = await api.createProduct(payload);
+    setProducts(prev => [...prev, newProduct]);
+  } else {
+    const updated = await api.updateProduct(payload.id, payload);
+    setProducts(prev => prev.map(p => p.id === payload.id ? updated : p));
+  }
+  closeModal();
+};
+```
+
+Компоненты-помощники
+ProductList – отображает список карточек товаров, передаёт события редактирования/удаления.
+
+ProductModal – универсальное модальное окно для создания и редактирования товара.
+
+### 4. Документирование API с помощью Swagger (Практическое занятие №5)
+
+В серверное приложение добавлена поддержка Swagger:
+
+- Установлены пакеты `swagger-jsdoc` и `swagger-ui-express`.
+- В `app.js` настроена генерация спецификации:
+  ```js
+  const swaggerOptions = {
+    definition: {
+      openapi: '3.0.0',
+      info: {
+        title: 'API магазина "Токийский дрифт"',
+        version: '1.0.0',
+        description: 'Документация для управления товарами и пользователями',
+      },
+      servers: [{ url: `http://localhost:${PORT}` }],
+    },
+    apis: [__filename], // файлы с JSDoc-комментариями
+  };
+  const swaggerSpec = swaggerJsdoc(swaggerOptions);
+  app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerSpec));
+  ```
+
+- Для каждого маршрута добавлены JSDoc-комментарии с описанием параметров, тела запроса и ответов.  
+  *Пример (в коде комментарии не приведены, но предполагается их наличие):*
+  ```js
+  /**
+   * @swagger
+   * /products:
+   *   get:
+   *     summary: Возвращает список всех товаров
+   *     responses:
+   *       200:
+   *         description: Успешный ответ
+   *         content:
+   *           application/json:
+   *             schema:
+   *               type: array
+   *               items:
+   *                 $ref: '#/components/schemas/Product'
+   */
+  ```
+
+После запуска сервера документация доступна по адресу:  
+[http://localhost:3000/api-docs](http://localhost:3000/api-docs) (интерактивный интерфейс).
 
 ---
 
-## 🚀 Запуск проекта
+## Запуск проекта
 
-### 1. Клонирование репозитория
+1. **Клонировать репозиторий**:
+   ```bash
+   git clone <URL репозитория>
+   cd <папка проекта>
+   ```
 
-```bash
-git clone https://github.com/your-username/shop-project.git
-cd shop-project
-```
+2. **Установить зависимости** (для сервера):
+   ```bash
+   npm install
+   ```
 
-### 2. Запуск бэкенда
+3. **Запустить сервер**:
+   ```bash
+   node app.js
+   ```
+   Сервер будет доступен на `http://localhost:3000`.
 
-```bash
-cd backend
-npm install
-npm start
-```
-
-Сервер запустится на порту **3000**.  
-Swagger UI будет доступен по адресу: [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
-
-### 3. Запуск фронтенда
-
-В отдельном терминале:
-
-```bash
-cd frontend
-npm install
-npm start
-```
-
-Приложение откроется на порту **3001** (по умолчанию).  
-Фронтенд настроен на обращение к API по адресу `http://localhost:3000/api`.
-
-> **Важно**: Убедитесь, что бэкенд запущен до открытия фронтенда. Для корректной работы CORS разрешены запросы с `http://localhost:3001`.
+4. **Открыть клиентскую часть**:
+   - Простая HTML-версия: перейти по `http://localhost:3000` (файлы из папки `public` обслуживаются статически).
+   - React-версия: требуется отдельный запуск (например, `npm start` в папке клиента на порту 3001).
 
 ---
 
-## 📡 API Endpoints
+## Выводы
 
-| Метод   | URL                  | Описание                     |
-|---------|----------------------|------------------------------|
-| GET     | `/api/products`      | Получить список всех товаров |
-| GET     | `/api/products/:id`  | Получить товар по ID         |
-| POST    | `/api/products`      | Создать новый товар          |
-| PATCH   | `/api/products/:id`  | Обновить данные товара       |
-| DELETE  | `/api/products/:id`  | Удалить товар                |
+В результате выполнения практических работ был создан полноценный интернет-магазин с тематикой японских товаров «Токийский дрифт»:
 
-### Пример объекта товара
+- Применён **SASS** для современной, модульной стилизации.
+- Разработано **REST API** на Express с полным набором CRUD операций.
+- Реализована **связка клиента и сервера** через Fetch API.
+- Добавлена **документация Swagger**, упрощающая тестирование и взаимодействие с API.
 
-```json
-{
-  "id": "abc123",
-  "name": "Браслет",
-  "category": "Браслеты",
-  "description": "Элегантное украшение",
-  "price": 1200,
-  "stock": 5,
-  "rating": 4.5,
-  "image": "https://via.placeholder.com/150"
-}
-```
+Все исходные коды находятся в данном репозитории.
 
 ---
 
-## 📄 Документация API (Swagger)
-
-После запуска бэкенда документация доступна по адресу:  
-👉 [http://localhost:3000/api-docs](http://localhost:3000/api-docs)
-
-Swagger UI позволяет:
-- Просматривать все эндпоинты, модели данных
-- Выполнять запросы прямо из браузера (Try it out)
-- Проверять ответы и коды статусов
-
----
-
-## 📝 Практические задания
-
-В ходе выполнения практических занятий были реализованы следующие задачи:
-
-1. **CSS‑препроцессоры** – стилизация интернет-магазина с использованием SASS (переменные, миксины, вложенность).
-2. **Сервер на Node.js + Express** – разработка REST API для товаров.
-3. **Тестирование API в Postman** – проверка всех CRUD операций и работа с внешним API.
-4. **Интеграция API + React** – создание полноценного клиентского приложения.
-5. **Расширенный REST API + Swagger** – автоматическая генерация документации API.
-
-Все исходные коды доступны в этом репозитории.
-
----
-
-## 👨‍💻 Автор
-
-Студент: [Ваше имя]  
-Группа: [Номер группы]  
-Курс: «Фронтенд и бэкенд разработка»  
-Преподаватели: Загородних Н.А., Краснослободцева Д.Б.
+**Ссылка на репозиторий:** [https://github.com/RR20040305/japan-shop](https://github.com/RR20040305/japan-shop)
